@@ -1,0 +1,15 @@
+{
+  "name": "aoc-2024",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "setup": "bun run setup.ts",
+    "day": "bun --watch run-day.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
