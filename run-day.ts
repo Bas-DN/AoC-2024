@@ -33,11 +33,14 @@ handleUserResponse(await promptUser(userActionPrompt, "green"));
  * @param color
  */
 async function promptUser(prompt: string, color: string = "white") {
-  const stdinIterator = process.stdin.iterator();
   const ansiColor = Bun.color(color, "ansi");
   console.log(ansiColor, `${prompt}\n> `);
-  const response = (await stdinIterator.next()).value.toString().trimEnd();
-  return response;
+  return new Promise<string>((resolve) => {
+    process.stdin.once('data', (data) => {
+      const response = data.toString().trimEnd();
+      resolve(response);
+    });
+  });
 }
 /**
  * Print the text in the specified color
@@ -76,7 +79,6 @@ async function handleUserResponse(input: string | null) {
   let type: SolutionType;
   let part: number;
   if (!Object.values(ValidInput).includes(input as ValidInputType)) {
-    // if (input.length !== 2) {
     printInColor("Invalid input. Please type one of s1, s2, p1, p2", "red");
     watcher.close();
     handleUserResponse(await promptUser(shortActionPrompt, "green"));
