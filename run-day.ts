@@ -26,6 +26,7 @@ const userActionPrompt = `What do you want to do?:
 - exit: Exit`;
 const shortActionPrompt = `What do you want to do? (s1, s2, p1, p2, exit)`;
 import { watch } from "fs";
+import { printInColor } from "./lib/printInColor";
 handleUserResponse(await promptUser(userActionPrompt, "green"));
 /**
  * Prompt the user for input and return the response
@@ -41,26 +42,6 @@ async function promptUser(prompt: string, color: string = "white") {
       resolve(response);
     });
   });
-}
-/**
- * Print the text in the specified color
- * @param text
- * @param color
- * @param params The parameters to replace in the text (will be cast to string)
- * @param paramColor
- */
-export function printInColor(
-  text: string,
-  color: string = "white",
-  params: any[] = [],
-  paramColor: string = "white"
-) {
-  const ansiColor = Bun.color(color, "ansi");
-  const ansiParamColor = Bun.color(paramColor, "ansi");
-  for (const param of params) {
-    text = text.replace("{}", ansiParamColor + param.toString() + ansiColor);
-  }
-  console.log(ansiColor, text);
 }
 async function handleUserResponse(input: string | null) {
   const watcher = watch(

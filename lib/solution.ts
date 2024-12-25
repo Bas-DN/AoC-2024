@@ -1,4 +1,4 @@
-import { printInColor } from "../run-day";
+import { printInColor } from "./printInColor";
 
 interface ISolutionTaskExecutor {
   runSamplePart1: (samplesWithExpected: SampleWithAnswer) => number;
