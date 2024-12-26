@@ -4,12 +4,6 @@ import {
   type SampleWithAnswer,
   type SolutionType,
 } from "../../lib/solution";
-// Add sample input and expected output
-let sample: SampleWithAnswer = {
-  input: ``,
-  expectedPart1: 0,
-  expectedPart2: 0,
-};
 class SolutionExecutor extends SampleExecutor {
   runPart1(input: string): number {
     return 0;
@@ -19,6 +13,12 @@ class SolutionExecutor extends SampleExecutor {
     return 0;
   }
 }
+// Add sample input and expected output
+let sample: SampleWithAnswer = {
+  input: ``,
+  expectedPart1: 0,
+  expectedPart2: 0,
+};
 /**
  * Export the run function to be used in the main file
  * @param type 
